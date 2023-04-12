@@ -2,24 +2,23 @@
 #include <stdlib.h>
 #include <mpi.h>
 
-#define ARRAY_SIZE 100000
+#define ARRAY_SIZE 100
 
 int main(int argc, char **argv) {
     int rank, size;
     int i, start, end, sum = 0;
     int array[ARRAY_SIZE];
-
+    
     MPI_Init(&argc, &argv);
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
     MPI_Comm_size(MPI_COMM_WORLD, &size);
-
+    
     if (rank == 0) {
-        // Initialize the array with some random values
         for (i = 0; i < ARRAY_SIZE; i++) {
-            array[i] = rand() % 100;
+            array[i] = i;
         }
     }
-
+    
     // Broadcast the array to all processes
     MPI_Bcast(array, ARRAY_SIZE, MPI_INT, 0, MPI_COMM_WORLD);
 
@@ -31,16 +30,20 @@ int main(int argc, char **argv) {
     for (i = start; i < end; i++) {
         sum += array[i];
     }
+    
+//     printf("%d %d %d\n", rank, size, sum);
 
+    int finalSum = 0;
     // Reduce the sum from each process to the final sum
-    MPI_Reduce(&sum, &sum, 1, MPI_INT, MPI_SUM, 0, MPI_COMM_WORLD);
+    MPI_Reduce(&sum, &finalSum, 1, MPI_INT, MPI_SUM, 0, MPI_COMM_WORLD);
 
     if (rank == 0) {
         // Print the final sum
-        printf("The sum of all elements in the array is %d.\n", sum);
+        printf("The sum of all elements in the array is %d.\n", finalSum);
     }
-
+    
     MPI_Finalize();
 
+    
     return 0;
 }
