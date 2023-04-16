@@ -30,8 +30,6 @@ int main(int argc, char **argv) {
     for (i = start; i < end; i++) {
         sum += array[i];
     }
-    
-//     printf("%d %d %d\n", rank, size, sum);
 
     int finalSum = 0;
     // Reduce the sum from each process to the final sum
