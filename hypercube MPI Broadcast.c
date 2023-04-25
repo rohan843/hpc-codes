@@ -52,5 +52,6 @@ int main(int argc, char* argv[])
     // Barrier added just for aesthetic logging, its not actually needed in the code.
     MPI_Barrier(MPI_COMM_WORLD);
     printf("Node %d has data %d.\n", rnk, data);
+    MPI_Finalize();
     return 0;
 }
