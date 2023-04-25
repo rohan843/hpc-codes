@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <mpi.h>
 
-// We have a N*M mesh.
+// We have an N*M mesh.
 #define N 4
 #define M 3
 
