@@ -37,7 +37,7 @@ int main(int argc, char* argv[])
             {
                 // The current node will receive the data.
                 int sender = rnk & (~(1 << i));
-                MPI_Recv(&data, 1, MPI_INT, sender, MPI_ANY_TAG, MPI_COMM_WORLD, NULL);
+                MPI_Recv(&data, 1, MPI_INT, sender, MPI_ANY_TAG, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
                 printf("Node %d received data %d from node %d.\n", rnk, data, sender);
             }
             else
