@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <pthread.h>
 
-// ARR_SIZE must be 16.
+// ARR_SIZE_ORIG must be 16.
 #define ARR_SIZE_ORIG 16
 #define ARR_SIZE 4
 #define THREAD_COUNT (ARR_SIZE/2)
