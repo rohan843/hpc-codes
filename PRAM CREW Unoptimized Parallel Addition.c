@@ -28,7 +28,7 @@ void* thread_fn(void* args)
             data -> arr[data -> rnk] = tmp;
         }
         data -> p /= 2;
-        pthread_barrier_wait(&b0);
+        pthread_barrier_wait(&b1);
     }
     free(data);
     return NULL;
